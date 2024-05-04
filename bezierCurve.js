@@ -35,11 +35,10 @@ function drawPoint(x,y){
     bezierCurve_oldX=x;bezierCurve_oldY=y
 }
 
-const bezierCurveQuality = 1/16 //16 means quality, more => better quality
-function bezierCurve(points){
+function bezierCurve(points, quality){
     bezierCurve_oldX=undefined
     canvas.width=canvas.width
-    for(let t=0; t<=1.0001; t+=bezierCurveQuality){
+    for(let t=0; t<=1.0001; t+=1/quality){
         let x = 0
         let y = 0
         for(let i=0; i<points.length; i++){
@@ -52,8 +51,8 @@ function bezierCurve(points){
 
 const points = [
     {x:0, y:0},
-    {x:canvas.width, y:0},
-    {x:canvas.width, y:canvas.height},
+    {x:canvas.width*2, y:canvas.height/2},
+    {x:0, y:canvas.height},
 ]
 
-bezierCurve(points)
+bezierCurve(points, 32)
